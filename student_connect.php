@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Record Inserted</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -14,7 +14,7 @@
 <body>
     <h3>You will be contacted as soon as you are matched with one of our alumni!</h3>
 </body>
-</html>
+</html> -->
 
 <?php
     // test commit again again again
@@ -68,19 +68,22 @@
                 $stmt->store_result();
                 $rnum = $stmt->num_rows;
                 if ($rnum==0) {
-                    $stmt->close();
-                    $stmt = $conn->prepare($INSERT);
-                    $stmt->bind_param("sssssssi", $first_name, $last_name, $email, $phone, $area, $school, $priority, $alum_id);
-                    // $stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone, $area, $school, $priority); //GOOD
-                    $stmt->execute();
-                    $message = "New record inserted sucessfully";
-                    echo "<script type='text/javascript'>alert('$test');</script>";
+                    if ($toUpdate == "0") {
+                        $stmt->close();
+                        $stmt = $conn->prepare($INSERT);
+                        $stmt->bind_param("sssssssi", $first_name, $last_name, $email, $phone, $area, $school, $priority, $alum_id);
+                        // $stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone, $area, $school, $priority); //GOOD
+                        $stmt->execute();
+                        $message = "New record inserted sucessfully";
+                        echo "You will be contacted as soon as you are matched with one of our alumni! <script type='text/javascript'>alert('$message');</script>";
+                    }
+                    else {
+                        echo "The email you entered is not in our system. You can create a new account using this email byt resubmitting the form and selecting 'no' to updating information.";
+                    }
 
                     /***** MATCHING *****/
-
                 }
                 else {
-                    // echo "Someone already registered using this email";
                     if ($email === $gmail && $toUpdate == "1") { // only allow update if google login matches entered email
                         $UPDATE_INFO = "UPDATE student 
                                         SET first_name='$first_name', last_name='$last_name', phone='$phone', area='$area', school='$school', priority='$priority', alum_id='$alum_id'
@@ -88,7 +91,8 @@
 
                         if ($conn->query($UPDATE_INFO) === TRUE) {
                             echo "Record updated successfully";
-                        } else {
+                        }
+                        else {
                             echo "Error updating record: " . $conn->error;
                         }
                     }
