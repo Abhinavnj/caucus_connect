@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caucus Connect</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .navbar{
+        margin-bottom:0;
+        border-radius:0;
+      }
+
+      .form-group .control-label:after {
+        content:"*";
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Caucus Connect</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-right" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-right" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-right" href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+          <a href="form_select.html" class="btn btn-outline-danger">Get Started</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="page-header">Please fill out this form</h2>
+        <hr>
+    </div>
+
+    <!-- FORMS -->
+    <div class="container">
+      <form method="POST" action="alumni_connect.php">
+        <div class="form-group">
+          <label class="control-label">First Name</label>
+          <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Last Name</label>
+          <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Phone Number</label>
+          <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Graduation Year</label>
+            <input type="number" name="grad_year" class="form-control" placeholder="0000" required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Major(s)</label>
+            <input type="text" name="major" class="form-control" placeholder="Major(s)" required>
+        </div>
+
+        <div class="form-group">
+            <label>Industry</label>
+            <input type="text" name="industry" class="form-control" placeholder="Industry">
+        </div>
+
+        <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" class="form-control" placeholder="Company">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">General Area of Interest (Best fit based on major and experience)</label>
+          <select class="form-control" name="gen_area" id="genareadropdown" required>
+            <!-- <option value="STEM">STEM</option>
+            <option value="Humanities">Humanities</option>
+            <option value="other">Other</option> -->
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Specific Area of Interest (Best fit based on major and experience)</label>
+            <select class="form-control" name="specific_area" id="specificareadropdown" required>
+              <!-- <option value="STEM">STEM</option>
+              <option value="Humanities">Humanities</option>
+              <option value="other">Other</option> -->
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">School</label>
+          <select class="form-control" name="school" id="schooldropdown" required>
+          </select>
+        </div>
+
+        <!-- <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+          <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          </div>
+        </div> -->
+
+        <button type="submit" class="btn btn-primary btn-lg active">Submit</button>
+        </form>
+
+        <hr>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function()
+      {
+        $.getJSON('resources/us_institutions.json', function(data) {
+            $.each(data,function(key,value)
+            {
+            // var option = $('<option />').val(value.collegeID).text(value.college);
+                var option = $('<option />').text(value.institution);
+                $("#schooldropdown").append(option);
+            });
+        });
+        $.getJSON('resources/areas2.json', function(data) {
+            $.each(data,function(key,value)
+            {
+                var option = $('<option />').text(value.area);
+                $("#genareadropdown").append(option);
+            });
+        });
+        $.getJSON('resources/areas2.json', function(data) {
+            $.each(data,function(key,value)
+            {
+                var option = $('<option />').text(value.area);
+                $("#specificareadropdown").append(option);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

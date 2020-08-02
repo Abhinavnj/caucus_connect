@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caucus Connect</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+  display: none;
+}
+
+      .navbar{
+        margin-bottom:0;
+        border-radius:0;
+      }
+
+      .jumbotron{
+        background-image: url("resources/SHS.jpg");
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+        background-position: center center;
+      }
+
+      .navbar .start-button{
+        text-align: right;
+      }
+
+      body {
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Caucus Connect</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-right" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-right" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-right" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-right" href="alumni.php">Our Alumni</a>
+            </li>
+          </ul>
+          <div class="start-button">
+            <a href="form_select.html" class="btn btn-outline-danger">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- JUMBOTRON -->
+    <div class="jumbotron text-center"></div>
+
+    <!-- TYPOGRAPHY -->
+    <div class="container">
+      <h2 class="page-header">What is Caucus Connect?</h2>
+      <p class="lead">Caucus Connect is a service that was created to serve the needs of any and all 
+                      Secaucus High School students in their search for relevant information regarding 
+                      their future career/educational endeavors. By matching prospective users with fellow 
+                      SHS alumni, in the relevant career fields and educational institutions, our service 
+                      seeks to keep SHS connected from top to bottom; we accomplish this by connecting students 
+                      with the information they need to succeed, while allowing alumni to foster the growth of 
+                      students that may one day become valuable contributors to their own industry.</p>
+
+      <h2 class="page-header">How does it work?</h2>
+
+      <div class="tab">
+        <button class="tablinks" onmouseover="openCity(event, 'London')">Step 1</button>
+        <button class="tablinks" onmouseover="openCity(event, 'Paris')">Step 2</button>
+        <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Step 3</button>
+      </div>
+      
+      <div id="London" class="tabcontent">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+      </div>
+      
+      <div id="Paris" class="tabcontent">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+      </div>
+      
+      <div id="Tokyo" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+      </div>
+
+      <!-- <ul class="list-group list-group-flush">
+        <li style="background-color: aliceblue;" class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="badge badge-primary badge-pill">1</span>
+          You select an area of study.
+        </li>
+        <li style="background-color: aliceblue;" class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="badge badge-primary badge-pill">2</span>
+          You select a school that you are interested in.
+        </li>
+        <li style="background-color: aliceblue;" class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="badge badge-primary badge-pill">3</span>
+          You are matched with one of our Secaucus High School alumni that can help you and we will email you the contact information!
+        </li>
+      </ul> -->
+    </div>
+  </div>
+
+    <script>
+      function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the link that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

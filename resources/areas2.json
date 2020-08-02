@@ -1,0 +1,191 @@
+[  
+    {
+        "area": "Select an area of study"
+    },
+    {
+        "area": "Art"
+    },
+    {
+        "area": "--Culinary"
+    },
+    {
+        "area": "--Fashion"
+    },
+    {
+        "area": "--Film"
+    },
+    {
+        "area": "--Music"
+    },
+    {
+        "area": "Business"
+    },
+    {
+        "area": "--Accounting"
+    },
+    {
+        "area": "--Consulting"
+    },
+    {
+        "area": "--Economics"
+    },
+    {
+        "area": "--Finance"
+    },
+    {
+        "area": "--Management"
+    },
+    {
+        "area": "--Marketing"
+    },
+    {
+        "area": "Engineering"
+    },
+    {
+        "area": "--Aerospace Engineering"
+    },
+    {
+        "area": "--Biomedical Engineering"
+    },
+    {
+        "area": "--Chemical Engineering"
+    },
+    {
+        "area": "--Civil Engineering"
+    },
+    {
+        "area": "--Computer Engineering"
+    },
+    {
+        "area": "--Electrical Engineering"
+    },
+    {
+        "area": "--Industrial Engineering"
+    },
+    {
+        "area": "--Mechanical Engineering"
+    },
+    {
+        "area": "Humanities"
+    },
+    {
+        "area": "--English/Literature"
+    },
+    {
+        "area": "--History"
+    },
+    {
+        "area": "--Language"
+    },
+    {
+        "area": "--Philosophy"
+    },
+    {
+        "area": "Mathematics"
+    },
+    {
+        "area": "--Actuarial Science"
+    },
+    {
+        "area": "--Statistics"
+    },
+    {
+        "area": "Military"
+    },
+    {
+        "area": "--Air Force"
+    },
+    {
+        "area": "--Army"
+    },
+    {
+        "area": "--Coast Guard"
+    },
+    {
+        "area": "--Marines"
+    },
+    {
+        "area": "--Navy"
+    },
+    {
+        "area": "Science"
+    },
+    {
+        "area": "--Architecture"
+    },
+    {
+        "area": "--Biology"
+    },
+    {
+        "area": "--Chemistry"
+    },
+    {
+        "area": "--Cognitive Science"
+    },
+    {
+        "area": "--Medical/Pharmacy"
+    },
+    {
+        "area": "--Neuruscience"
+    },
+    {
+        "area": "--Physics"
+    },
+    {
+        "area": "Social Science"
+    },
+    {
+        "area": "--Communications"
+    },
+    {
+        "area": "--Education"
+    },
+    {
+        "area": "--International Policy"
+    },
+    {
+        "area": "--Law"
+    },
+    {
+        "area": "--Political Science"
+    },
+    {
+        "area": "--Psychology"
+    },
+    {
+        "area": "--Public Health"
+    },
+    {
+        "area": "--Sociology"
+    },
+    {
+        "area": "Technology"
+    },
+    {
+        "area": "--Computer Science"
+    },
+    {
+        "area": "--Cybersecurity"
+    },
+    {
+        "area": "--Data Science"
+    },
+    {
+        "area": "--Information Technology"
+    },
+    {
+        "area": "Trade School"
+    },
+    {
+        "area": "--Construction"
+    },
+    {
+        "area": "--Electrician"
+    },
+    {
+        "area": "--Landscaping"
+    },
+    {
+        "area": "--Plumbing"
+    }
+]
