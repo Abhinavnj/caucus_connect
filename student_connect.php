@@ -56,7 +56,7 @@
                 //     echo "success";
                 // }
                 // else {
-                //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);;
+                //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                 // }
 
                 //Prepare statement
