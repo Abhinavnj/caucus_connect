@@ -32,6 +32,34 @@
         $alum_id = 101;
     }
 
+    // Function to send email to alumni
+    function sendmail($email, $alum_id, $connection, $first_name) {
+        if (mysqli_connect_error()) {
+            die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
+        }
+        else {
+            $SELECT_EMAIL = "SELECT email FROM alumni WHERE id = '$alum_id' LIMIT 1";
+            $SELECT_FIRST = "SELECT first_name FROM alumni WHERE id = '$alum_id' LIMIT 1";
+            $SELECT_LAST = "SELECT last_name FROM alumni WHERE id = '$alum_id' LIMIT 1";
+            $SELECT_EMAIL = $connection->query($SELECT_EMAIL);
+            $SELECT_FIRST = $connection->query($SELECT_FIRST);
+            $SELECT_LAST = $connection->query($SELECT_LAST);
+
+            $to = "{$email}";
+            $subject = "Caucus Connect Registration Information";
+            $message = "Hello {$first_name},\nHere is the alumni information you requested:\nName: {$SELECT_FIRST} {$SELECT_LAST}\nEmail: {$SELECT_EMAIL}";
+            $message = wordwrap($message,70); // use wordwrap() if lines are longer than 70 characters
+            $headers = 'From: caucusconnect@gmail.com' . "\r\n" .
+                        'Reply-To: caucusconnect@gmail.com' . "\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+            
+            // send email
+            mail($to, $subject, $message, $headers);
+
+            return true;
+        }
+    }
+
     try {
 
     if (strpos($gmail, 'sboe') !== false || strpos($gmail, 'caucusconnect') !== false) {
@@ -66,6 +94,7 @@
                 $stmt->bind_result($email);
                 $stmt->store_result();
                 $rnum = $stmt->num_rows;
+                // if ($rnum==0 && sendmail($email, $alum_id, $conn, $first_name)) {
                 if ($rnum==0) {
                     if ($toUpdate == "0") {
                         $stmt->close();
