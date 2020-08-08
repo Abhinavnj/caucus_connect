@@ -33,30 +33,44 @@
     }
 
     // Function to send email to alumni
-    function sendmail($email, $alum_id, $connection, $first_name) {
+    // function sendmail($email, $alum_id, $connection, $first_name) {
+    function sendmail($email, $alum_id, $first_name) {
+        $host = "localhost";
+        $dbusername = "id14296502_ccroot";
+        $dbpassword = "Secaucus!2345";
+        $dbname = "id14296502_people";
+
+        $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
+        
         if (mysqli_connect_error()) {
             die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
         }
         else {
-            $SELECT_EMAIL = "SELECT email FROM alumni WHERE id = '$alum_id' LIMIT 1";
-            $SELECT_FIRST = "SELECT first_name FROM alumni WHERE id = '$alum_id' LIMIT 1";
-            $SELECT_LAST = "SELECT last_name FROM alumni WHERE id = '$alum_id' LIMIT 1";
-            $SELECT_EMAIL = $connection->query($SELECT_EMAIL);
-            $SELECT_FIRST = $connection->query($SELECT_FIRST);
-            $SELECT_LAST = $connection->query($SELECT_LAST);
+            $SELECT = "SELECT first_name, last_name, email FROM alumni WHERE alum_id = '{$alum_id}' LIMIT 1";
+            $result = $connection->query($SELECT);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                $row = $result->fetch_assoc();
+                $alum_first = $row["first_name"];
+                $alum_last = $row["last_name"];
+                $alum_email = $row["email"];
 
-            $to = "{$email}";
-            $subject = "Caucus Connect Registration Information";
-            $message = "Hello {$first_name},\nHere is the alumni information you requested:\nName: {$SELECT_FIRST} {$SELECT_LAST}\nEmail: {$SELECT_EMAIL}";
-            $message = wordwrap($message,70); // use wordwrap() if lines are longer than 70 characters
-            $headers = 'From: caucusconnect@gmail.com' . "\r\n" .
-                        'Reply-To: caucusconnect@gmail.com' . "\r\n" .
-                        'X-Mailer: PHP/' . phpversion();
+                // email data
+                // $email = "abhinavnj@gmail.com";
+                $to = $email;
+                $subject = "Caucus Connect Registration Information";
+                $message = "Hello {$first_name},\nHere is the alumni information you requested:\nName: {$alum_first} {$alum_last}\nEmail: {$alum_email}";
+                $message = wordwrap($message,70); // use wordwrap() if lines are longer than 70 characters
+                $headers = 'From: caucusconnect@gmail.com' . "\r\n" .
+                           'Reply-To: caucusconnect@gmail.com' . "\r\n" .
+                           'X-Mailer: PHP/' . phpversion();
             
-            // send email
-            mail($to, $subject, $message, $headers);
-
-            return true;
+                // send email
+                echo " You will shortly recieve an email with the contact information of the person you requested.";
+                mail($to, $subject, $message, $headers);
+            } else {
+                echo "0 results";
+            }
         }
     }
 
@@ -104,6 +118,8 @@
                         $stmt->execute();
                         $message = "New record inserted sucessfully";
                         echo "You will be contacted as soon as you are matched with one of our alumni! <script type='text/javascript'>alert('$message');</script>";
+                        // sendmail($email, $alum_id, $conn, $first_name);
+                        sendmail($email, $alum_id, $first_name);
                     }
                     else {
                         echo "The email you entered is not in our system. You can create a new account using this email byt resubmitting the form and selecting 'no' to updating information.";
@@ -118,7 +134,8 @@
                                         WHERE email='$email'";
 
                         if ($conn->query($UPDATE_INFO) === TRUE) {
-                            echo "Record updated successfully";
+                            echo "Record updated successfully.";
+                            sendmail($email, $alum_id, $first_name);
                         }
                         else {
                             echo "Error updating record: " . $conn->error;
