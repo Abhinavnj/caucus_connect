@@ -93,19 +93,6 @@
             </thead>
 
             <?php
-                // the message
-                $to = "sjaideep24@gmail.com";
-                $subject = "subject";
-                $message = "Test email\nHopefully this works: {$test}";
-                $message = wordwrap($message,70); // use wordwrap() if lines are longer than 70 characters
-                $headers = 'From: caucusconnect@gmail.com' . "\r\n" .
-                            'Reply-To: caucusconnect@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
-                
-
-                // send email
-                mail($to, $subject, $message, $headers);
-
                 // Connect to database
                 $host = "localhost";
                 $dbusername = "id14296502_ccroot";
