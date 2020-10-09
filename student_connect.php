@@ -82,6 +82,54 @@
         }
     }
 
+    function sendgmail_alumni($alum_id, $first_name, $last_name, $email) {
+        $host = "localhost";
+        $dbusername = "id14296502_ccroot";
+        $dbpassword = "Secaucus!2345";
+        $dbname = "id14296502_people";
+
+        $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
+        if (mysqli_connect_error()) {
+            die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
+        }
+        else {
+            $SELECT = "SELECT first_name, email FROM alumni WHERE alum_id = '{$alum_id}' LIMIT 1";
+            $result = $connection->query($SELECT);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $alum_name = $row["first_name"];
+                $alum_email = $row["email"];
+
+                //email using PHPMailer
+                $mail = new PHPMailer(true);
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output        
+                $mail->SMTPSecure = "ssl";                                  // Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = 'caucusconnect@gmail.com';              // SMTP username
+                $mail->Password   = 'Secaucus07094';                        // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                $mail->Port       = 465;
+
+                $mail->setFrom('caucusconnect@gmail.com', 'Caucus Connect');
+                $mail->addAddress($alum_email, $alum_name);
+                $mail->addReplyTo('caucusconnect@gmail.com', 'Caucus Connect');
+
+                // Content
+                $message = "Hello {$alum_name},<br>You should be contacted shortly! This student requested your information:<br>Name: {$first_name} {$last_name}<br>Email: {$email}";
+                $message = wordwrap($message,70);
+                $subject = "Caucus Connect Match Information";
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                $mail->AltBody = $message;
+                // send email
+                $mail->send();
+            }
+        }
+    }
+
     function sendgmail($email, $alum_id, $first_name) {
         $host = "localhost";
         $dbusername = "id14296502_ccroot";
@@ -138,7 +186,7 @@
 
     try {
 
-    if (strpos($gmail, 'sboe') !== false || strpos($gmail, 'caucusconnect') !== false || strpos($gmail, 'abhinavnj') !== false) {
+    if (strpos($gmail, 'sboe.org') !== false || strpos($gmail, 'caucusconnect') !== false || strpos($gmail, 'abhinavnj') !== false) {
 
 
         if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($area) && !empty($school)) {
@@ -182,12 +230,11 @@
                         echo "You will be contacted as soon as you are matched with one of our alumni! <script type='text/javascript'>alert('$message');</script>";
                         // sendmail($email, $alum_id, $conn, $first_name);
                         sendgmail($email, $alum_id, $first_name);
+                        sendgmail_alumni($alum_id, $first_name, $last_name, $email);
                     }
                     else {
                         echo "The email you entered is not in our system. You can create a new account using this email byt resubmitting the form and selecting 'no' to updating information.";
                     }
-
-                    /***** MATCHING *****/
                 }
                 else {
                     if ($email === $gmail && $toUpdate == "1") { // only allow update if google login matches entered email
@@ -198,6 +245,7 @@
                         if ($conn->query($UPDATE_INFO) === TRUE) {
                             echo "Record updated successfully.";
                             sendgmail($email, $alum_id, $first_name);
+                            sendgmail_alumni($alum_id, $first_name, $last_name, $email);
                         }
                         else {
                             echo "Error updating record: " . $conn->error;
