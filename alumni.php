@@ -113,10 +113,12 @@
 
                 // Display data
                 if ($rnum > 0) {
+                    $count = 0;
                     while($row = $result-> fetch_assoc() ) {
-                        if ($alum_id != 101) {
+                        if ($count != 98) {
                             echo "<tr><td>". $row["alum_id"] ."</td><td>". $row["first_name"] ."</td><td>". $row["last_name"] ."</td><td>". $row["gen_area"] ."</td><td>". $row["specific_area"] ."</td><td>". $row["school"] ."</td><td>". $row["major"] ."</td><td>". $row["industry"] ."</td><td>". $row["company"] ."</td></tr>";
                         }
+                        $count = $count + 1;
                     }
                     echo "</table>";
                 }
