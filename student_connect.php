@@ -44,9 +44,9 @@
     // function sendmail($email, $alum_id, $connection, $first_name) {
     function sendmail($email, $alum_id, $first_name) {
         $host = "localhost";
-        $dbusername = "id14296502_ccroot";
+        $dbusername = "u855225069_ccroot";
         $dbpassword = "Secaucus!2345";
-        $dbname = "id14296502_people";
+        $dbname = "u855225069_users";
 
         $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
         
@@ -84,9 +84,9 @@
 
     function sendgmail_alumni($alum_id, $first_name, $last_name, $email) {
         $host = "localhost";
-        $dbusername = "id14296502_ccroot";
+        $dbusername = "u855225069_ccroot";
         $dbpassword = "Secaucus!2345";
-        $dbname = "id14296502_people";
+        $dbname = "u855225069_users";
 
         $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
         if (mysqli_connect_error()) {
@@ -132,9 +132,9 @@
 
     function sendgmail($email, $alum_id, $first_name) {
         $host = "localhost";
-        $dbusername = "id14296502_ccroot";
+        $dbusername = "u855225069_ccroot";
         $dbpassword = "Secaucus!2345";
-        $dbname = "id14296502_people";
+        $dbname = "u855225069_users";
 
         $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
         
@@ -191,9 +191,9 @@
 
         if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($area) && !empty($school)) {
             $host = "localhost";
-            $dbusername = "id14296502_ccroot";
+            $dbusername = "u855225069_ccroot";
             $dbpassword = "Secaucus!2345";
-            $dbname = "id14296502_people";
+            $dbname = "u855225069_users";
 
             $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
             if (mysqli_connect_error()) {

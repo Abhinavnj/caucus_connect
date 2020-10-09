@@ -95,9 +95,9 @@
             <?php
                 // Connect to database
                 $host = "localhost";
-                $dbusername = "id14296502_ccroot";
+                $dbusername = "u855225069_ccroot";
                 $dbpassword = "Secaucus!2345";
-                $dbname = "id14296502_people";
+                $dbname = "u855225069_users";
 
                 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 

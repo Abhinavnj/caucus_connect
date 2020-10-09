@@ -15,9 +15,9 @@
 
     if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($grad_year) && !empty($major) && !empty($industry) && !empty($company) && !empty($gen_area) && !empty($specific_area) && !empty($school)) {
         $host = "localhost";
-        $dbusername = "id14296502_ccroot";
+        $dbusername = "u855225069_ccroot";
         $dbpassword = "Secaucus!2345";
-        $dbname = "id14296502_people";
+        $dbname = "u855225069_users";
 
         $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
         if (mysqli_connect_error()) {
