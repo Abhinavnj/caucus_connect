@@ -13,7 +13,7 @@
     // $priority_school = filter_input(INPUT_POST,'priority_school');
     // $priority_area = filter_input(INPUT_POST,'priority_area');
 
-    if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($grad_year) && !empty($major) && !empty($industry) && !empty($company) && !empty($gen_area) && !empty($specific_area) && !empty($school)) {
+    if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($grad_year) && !empty($major) && !empty($gen_area) && !empty($specific_area) && !empty($school)) {
         $host = "localhost";
         $dbusername = "u855225069_ccroot";
         $dbpassword = "Secaucus!2345";
@@ -47,11 +47,12 @@
                 // $stmt->bind_param("sssissss", '$first_name','$last_name','$email','$phone', '$area', '$school','$priority_area','$priority_school');
                 $stmt->bind_param("ssissssssss", $first_name, $last_name, $grad_year, $email, $phone, $gen_area, $specific_area, $school, $major, $industry, $company);
                 $stmt->execute();
-                $message = "New record inserted sucessfully";
+                $message = "You have been registered sucessfully!";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
             else {
-                echo "Someone already registered using this email";
+                $message = "Someone already registered using this email";
+                echo "<script type='text/javascript'>alert('$message');</script>";
             }
             $stmt->close();
             $conn->close();
