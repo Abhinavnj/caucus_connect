@@ -18,7 +18,7 @@
             background-image: url('/icons-used/search.svg');
             background-position: 10px 12px;
             background-repeat: no-repeat;
-            width: 100%;
+            width: 50%;
             font-size: 16px;
             padding: 12px 20px 12px 40px;
             border: 1px solid #ddd;
@@ -40,6 +40,15 @@
 
         .table td, .table th {
             padding: .2rem;
+        }
+
+        #myContent {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #tableDesc {
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -70,76 +79,81 @@
         </div>
     </nav>
 
-    <h5>Here is a list of our alumni. Type below to filter this list.</h2>
-    
-    <input class ="form-control" type="text" id="myInput" placeholder="Search for area of interest or school">
+    <div id="myContent">
+        <h5 id="tableDesc">Here is a list of our alumni. Type below to filter this list.</h2>
+        
+        <input class="form-control" type="text" id="myInput" placeholder="Search for area of interest or school">
 
-    <hr>
+        <hr>
 
-    <div style="overflow-x:auto;">
-        <table class="table table-bordered table-striped" id="myTable">
-            <thead>
-                <tr class="header">
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>General Area of Interest</th>
-                    <th>Specific Area of Interest</th>
-                    <th>School</th>
-                    <th>Major</th>
-                    <th>Current Industry</th>
-                    <th>Company(s)</th>
-                </tr>
-            </thead>
+        <div style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" id="myTable">
+                <thead>
+                    <tr class="header">
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>General Area of Interest</th>
+                        <th>Specific Area of Interest</th>
+                        <th>School</th>
+                        <th>Major</th>
+                        <th>Current Industry</th>
+                        <th>Company(s)</th>
+                    </tr>
+                </thead>
 
-            <?php
-                // Connect to database
-                $host = "localhost";
-                $dbusername = "u855225069_ccroot";
-                $dbpassword = "Secaucus!2345";
-                $dbname = "u855225069_users";
+                <?php
+                    // Connect to database
+                    $host = "localhost";
+                    $dbusername = "u855225069_ccroot";
+                    $dbpassword = "Secaucus!2345";
+                    $dbname = "u855225069_users";
 
-                $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
+                    $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-                // Send error if connection error
-                if ($conn-> connect_error) {
-                    die("Connection failed:". $conn-> connect_error);
-                }
-
-                // Get data
-                $sql = "SELECT alum_id, first_name, last_name, gen_area, specific_area, school, major, industry, company FROM alumni";
-                $result = $conn-> query($sql);
-                $rnum = $result->num_rows;
-
-                // Display data
-                if ($rnum > 0) {
-                    while($row = $result-> fetch_assoc() ) {
-                        if ($row["alum_id"] != 101) {
-                            if (strcmp(substr($row["gen_area"], 0, 1), "-") == 0) {
-                                $row["gen_area"] = substr($row["gen_area"], 2);
-                            }
-                            if (strcmp(substr($row["specific_area"], 0, 1), "-") == 0) {
-                                $row["specific_area"] = substr($row["specific_area"], 2);
-                            }
-                            if (strpos($row["gen_area"], "*") !== false) {
-                                $row["gen_area"] = str_replace("*", ", ", $row["gen_area"]);
-                            }
-                            if (strpos($row["specific_area"], "*") !== false) {
-                                $row["specific_area"] = str_replace("*", ", ", $row["specific_area"]);
-                            }
-                            echo "<tr><td>". $row["alum_id"] ."</td><td>". $row["first_name"] ."</td><td>". $row["last_name"] ."</td><td>". $row["gen_area"] ."</td><td>". $row["specific_area"] ."</td><td>". $row["school"] ."</td><td>". $row["major"] ."</td><td>". $row["industry"] ."</td><td>". $row["company"] ."</td></tr>";
-                        }
+                    // Send error if connection error
+                    if ($conn-> connect_error) {
+                        die("Connection failed:". $conn-> connect_error);
                     }
-                    echo "</table>";
-                }
-                else {
-                    echo "0 results";
-                }
 
-                // Close connection
-                $conn-> close();
-            ?>
-        </table>
+                    // Get data
+                    $sql = "SELECT alum_id, first_name, last_name, gen_area, specific_area, school, major, industry, company FROM alumni";
+                    $result = $conn-> query($sql);
+                    $rnum = $result->num_rows;
+
+                    // Display data
+                    if ($rnum > 0) {
+                        while($row = $result-> fetch_assoc() ) {
+                            if ($row["alum_id"] != 101) {
+                                if (strcmp(substr($row["gen_area"], 0, 1), "-") == 0) {
+                                    $row["gen_area"] = substr($row["gen_area"], 2);
+                                }
+                                if (strcmp(substr($row["specific_area"], 0, 1), "-") == 0) {
+                                    $row["specific_area"] = substr($row["specific_area"], 2);
+                                }
+                                if (strpos($row["gen_area"], "*") !== false) {
+                                    $row["gen_area"] = str_replace("*", ", ", $row["gen_area"]);
+                                }
+                                if (strpos($row["specific_area"], "*") !== false) {
+                                    $row["specific_area"] = str_replace("*", ", ", $row["specific_area"]);
+                                }
+                                if (strpos($row["school"], "*") !== false) {
+                                    $row["school"] = str_replace("*", ", ", $row["school"]);
+                                }
+                                echo "<tr><td>". $row["alum_id"] ."</td><td>". $row["first_name"] ."</td><td>". $row["last_name"] ."</td><td>". $row["gen_area"] ."</td><td>". $row["specific_area"] ."</td><td>". $row["school"] ."</td><td>". $row["major"] ."</td><td>". $row["industry"] ."</td><td>". $row["company"] ."</td></tr>";
+                            }
+                        }
+                        echo "</table>";
+                    }
+                    else {
+                        echo "0 results";
+                    }
+
+                    // Close connection
+                    $conn-> close();
+                ?>
+            </table>
+        </div>
     </div>
 
     <script>
