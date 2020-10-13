@@ -115,6 +115,18 @@
                 if ($rnum > 0) {
                     while($row = $result-> fetch_assoc() ) {
                         if ($row["alum_id"] != 101) {
+                            if (strcmp(substr($row["gen_area"], 0, 1), "-") == 0) {
+                                $row["gen_area"] = substr($row["gen_area"], 2);
+                            }
+                            if (strcmp(substr($row["specific_area"], 0, 1), "-") == 0) {
+                                $row["specific_area"] = substr($row["specific_area"], 2);
+                            }
+                            if (strpos($row["gen_area"], "*") !== false) {
+                                $row["gen_area"] = str_replace("*", ", ", $row["gen_area"]);
+                            }
+                            if (strpos($row["specific_area"], "*") !== false) {
+                                $row["specific_area"] = str_replace("*", ", ", $row["specific_area"]);
+                            }
                             echo "<tr><td>". $row["alum_id"] ."</td><td>". $row["first_name"] ."</td><td>". $row["last_name"] ."</td><td>". $row["gen_area"] ."</td><td>". $row["specific_area"] ."</td><td>". $row["school"] ."</td><td>". $row["major"] ."</td><td>". $row["industry"] ."</td><td>". $row["company"] ."</td></tr>";
                         }
                     }
