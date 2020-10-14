@@ -177,7 +177,6 @@
                 $mail->AltBody = $message;
                 // send email
                 $mail->send();
-                echo " You will shortly recieve an email with the contact information of the person you requested.";
             } else {
                 echo "0 results";
             }
@@ -226,14 +225,13 @@
                         $stmt->bind_param("sssssssi", $first_name, $last_name, $email, $phone, $area, $school, $priority, $alum_id);
                         // $stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone, $area, $school, $priority); //GOOD
                         $stmt->execute();
-                        $message = "New record inserted sucessfully";
-                        echo "You will be contacted as soon as you are matched with one of our alumni! <script type='text/javascript'>alert('$message');</script>";
                         // sendmail($email, $alum_id, $conn, $first_name);
                         sendgmail($email, $alum_id, $first_name);
                         sendgmail_alumni($alum_id, $first_name, $last_name, $email);
+                        echo "You will shortly recieve an email with the contact information of the person you requested to connect with!";
                     }
                     else {
-                        echo "The email you entered is not in our system. You can create a new account using this email byt resubmitting the form and selecting 'no' to updating information.";
+                        echo "The email you entered is not in our system. You can create a new account using this email by resubmitting the form and selecting 'no' to updating information.";
                     }
                 }
                 else {
