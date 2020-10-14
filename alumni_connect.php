@@ -47,8 +47,7 @@
                 // $stmt->bind_param("sssissss", '$first_name','$last_name','$email','$phone', '$area', '$school','$priority_area','$priority_school');
                 $stmt->bind_param("ssissssssss", $first_name, $last_name, $grad_year, $email, $phone, $gen_area, $specific_area, $school, $major, $industry, $company);
                 $stmt->execute();
-                $message = "You have been registered sucessfully!";
-                echo "<script type='text/javascript'>alert('$message');</script>";
+                echo "You have been registered sucessfully! To confirm, you can check out our alumni page which can be accessed from the menu on our home page. If there is an error, please let us know at caucusconnect@gmail.com.";
             }
             else {
                 $message = "Someone already registered using this email";
