@@ -18,13 +18,13 @@
     $specific_area = filter_input(INPUT_POST,'specific_area');
     $school = filter_input(INPUT_POST,'school');
 
-    if (strcmp(substr($school, 0, 6), "Select")) {
+    if (strcmp(substr($school, 0, 6), "Select") == 0) {
         $school = "N/A";
     }
-    if (strcmp(substr($gen_area, 0, 6), "Select")) {
+    if (strcmp(substr($gen_area, 0, 6), "Select") == 0) {
         $gen_area = "N/A";
     }
-    if (strcmp(substr($specific_area, 0, 6), "Select")) {
+    if (strcmp(substr($specific_area, 0, 6), "Select") == 0) {
         $specific_area = "N/A";
     }
 
