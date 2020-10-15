@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,53 +9,84 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
-      .navbar{
-        margin-bottom:0;
-        border-radius:0;
-      }
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">Caucus Connect</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-right" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-right" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-right" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
-          <a href="form_select.html" class="btn btn-outline-danger">Get Started</a>
+        <a class="navbar-brand" href="index.html">Caucus Connect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-right" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-right" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-right" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <a href="form_select.html" class="btn btn-outline-danger">Get Started</a>
+            </div>
         </div>
-      </div>
     </nav>
 
     <div class="container">
         <h1 class="page-header">About Us</h1>
         <hr>
-        <h2>Caucus Connect is built by Secaucus High School students.</h3>
         <br>
-        <h5>Dylan Vasquez (SHS '18)</h5>
-        <h5>Abhinav Sirohi (SHS '19)</h5>
-        <h5>Sambhav Jaideep (SHS '19)</h5>
+        <div class="row">
+            <h3>Caucus Connect is built and run by Secaucus High School students.</h3>
+            <div class="column">
+                <img src="./resources/abhinav.jpeg" alt="Abhinav" width="280" height="300">
+                <h6>Abhinav Sirohi (SHS '19)</h6>
+            </div>
+            <div class="column">
+                <img src="./resources/dylan.jpeg" alt="Dylan" width="300" height="300">
+                <h6>Dylan Vasquez (SHS '18)</h6>
+            </div>
+            <div class="column">
+                <img src="./resources/sambhav.jpeg" alt="Sambhav" width="300" height="300">
+                <h6>Sambhav Jaideep (SHS '19)</h6>
+            </div>
+        </div>
     </div>
 
     <div class="profiles">
-        
+
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
+
 </html>
