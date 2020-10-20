@@ -69,8 +69,8 @@
                 $subject = "Caucus Connect Registration Information";
                 $message = "Hello {$first_name},\nHere is the alumni information you requested:\nName: {$alum_first} {$alum_last}\nEmail: {$alum_email}";
                 $message = wordwrap($message,70); // use wordwrap() if lines are longer than 70 characters
-                $headers = 'From: caucusconnect@gmail.com' . "\r\n" .
-                           'Reply-To: caucusconnect@gmail.com' . "\r\n" .
+                $headers = 'From: secret' . "\r\n" .
+                           'Reply-To: secret' . "\r\n" .
                            'X-Mailer: PHP/' . phpversion();
             
                 // send email
@@ -107,14 +107,14 @@
                 $mail->SMTPSecure = "ssl";                                  // Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = 'caucusconnect@gmail.com';              // SMTP username
-                $mail->Password   = 'Secaucus07094';                        // SMTP password
+                $mail->Username   = 'secret';              // SMTP username
+                $mail->Password   = 'secret';                        // SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 $mail->Port       = 465;
 
-                $mail->setFrom('caucusconnect@gmail.com', 'Caucus Connect');
+                $mail->setFrom('secret', 'Caucus Connect');
                 $mail->addAddress($alum_email, $alum_name);
-                $mail->addReplyTo('caucusconnect@gmail.com', 'Caucus Connect');
+                $mail->addReplyTo('secret', 'Caucus Connect');
 
                 // Content
                 $message = "Hello {$alum_name},<br>You should be contacted shortly! This student requested your information:<br>Name: {$first_name} {$last_name}<br>Email: {$email}";
@@ -158,14 +158,14 @@
                 $mail->SMTPSecure = "ssl";                                 // Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                 // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = 'caucusconnect@gmail.com';              // SMTP username
-                $mail->Password   = 'Secaucus07094';                        // SMTP password
+                $mail->Username   = 'secret';              // SMTP username
+                $mail->Password   = 'secret';                        // SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 $mail->Port       = 465;
 
-                $mail->setFrom('caucusconnect@gmail.com', 'Caucus Connect');
+                $mail->setFrom('secret', 'Caucus Connect');
                 $mail->addAddress($email, $first_name);
-                $mail->addReplyTo('caucusconnect@gmail.com', 'Caucus Connect');
+                $mail->addReplyTo('secret', 'Caucus Connect');
 
                 // Content
                 $message = "Hello {$first_name},<br>Here is the alumni information you requested:<br>Name: {$alum_first} {$alum_last}<br>Email: {$alum_email}";
@@ -185,7 +185,7 @@
 
     try {
 
-    if (strpos($gmail, 'sboe.org') !== false || strpos($gmail, 'caucusconnect') !== false || strpos($gmail, 'abhinavnj') !== false) {
+    if (strpos($gmail, 'secret') !== false || strpos($gmail, 'secret') !== false || strpos($gmail, 'secret') !== false) {
 
 
         if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($phone) && !empty($area) && !empty($school)) {
@@ -269,7 +269,7 @@
         }
     }
     else {
-        $message = "Must be signed in with sboe.org email address!";
+        $message = "Must be signed in with secret email address!";
         echo "<script type='text/javascript'>alert('$message');</script>";
         die();
     }

@@ -38,14 +38,14 @@
         $mail->SMTPSecure = "ssl";                                  // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'caucusconnect@gmail.com';              // SMTP username
-        $mail->Password   = 'Secaucus07094';                        // SMTP password
+        $mail->Username   = 'secret';              // SMTP username
+        $mail->Password   = 'secret';                        // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 465;
 
-        $mail->setFrom('caucusconnect@gmail.com', 'Caucus Connect');
+        $mail->setFrom('secret', 'Caucus Connect');
         $mail->addAddress($email, $first_name);
-        $mail->addReplyTo('caucusconnect@gmail.com', 'Caucus Connect');
+        $mail->addReplyTo('secret', 'Caucus Connect');
 
         // Content
         $message = "Hello {$first_name},<br>You have been registered with Caucus Connect!<br><br>Best wishes,<br>Abhinav";
@@ -94,7 +94,7 @@
                 $stmt->bind_param("ssissssssss", $first_name, $last_name, $grad_year, $email, $phone, $gen_area, $specific_area, $school, $major, $industry, $company);
                 $stmt->execute();
                 sendgmail($first_name, $email);
-                echo "You have been registered sucessfully! To confirm, you can check out our alumni page which can be accessed from the menu on our home page. If there is an error, please let us know at caucusconnect@gmail.com.";
+                echo "You have been registered sucessfully! To confirm, you can check out our alumni page which can be accessed from the menu on our home page. If there is an error, please let us know at secret.";
             }
             else {
                 $message = "Someone already registered using this email";
