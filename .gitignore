@@ -1,1 +1,5 @@
-.DS_Store
+/.DS_Store
+/alumni-google-form.csv
+/alumni.php
+/alumni_connect.php
+/student_connect.php
